@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            GreenTech - Login
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <h1 col-8>Bem-Vind@ ao
+        <br> GreenTech
+    </h1>
+    <form class="form">
+
+        <ion-list>
+
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="email" #email></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Senha</ion-label>
+                <ion-input type="password" #senha></ion-input>
+            </ion-item>
+
+        </ion-list>
+
+        <button type="submit" ion-button block (click)="logarUsuario()">
+            Entrar
+        </button>
+
+    </form>
+
+</ion-content>
+<ion-footer text-center>Fatec de Praia Grande &copy; 2018 - Equipe GreenTech</ion-footer>

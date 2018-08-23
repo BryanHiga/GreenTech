@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            Cadastro de Usuário
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <form class="form">
+        <ion-list>
+            <ion-item>
+                <ion-label floating>Nome Completo</ion-label>
+                <ion-input type="text" #nome></ion-input>
+            </ion-item>
+
+            <ion-item><!--MUDAR ISSO-->
+                <ion-label floating>Telefone</ion-label>
+                <ion-input type="number" #telefone></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Email</ion-label>
+                <ion-input type="email" #email></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label floating>Senha</ion-label>
+                <ion-input type="password" #senha></ion-input>
+            </ion-item>
+        </ion-list>
+
+        <ion-list radio-group>
+            <ion-list-header>
+                Tipo de Usuário
+            </ion-list-header>
+            <ion-item>
+                <ion-label>Administrador</ion-label>
+                <ion-radio value="1" #tpUsuario></ion-radio>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>Aluno</ion-label>
+                <ion-radio value="0" #tpUsuario></ion-radio>
+            </ion-item>
+
+        </ion-list>
+        <br>
+
+        <button type="submit" ion-button block (click)="cadastrarUsuario()">
+            Adicionar Usuário
+        </button>
+
+    </form>
+
+</ion-content>

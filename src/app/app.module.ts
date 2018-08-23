@@ -6,20 +6,43 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { TabsPage } from '../pages/tabs/tabs';
+import { CadastroPage } from '../pages/cadastro/cadastro';
+import { LoginPage } from '../pages/login/login';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    TabsPage,
+    HomePage,
+    CadastroPage,
+    LoginPage
+    
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyDPKPQUtuEMaGDF3Na-FvUF7jq9z2PiW1s",
+      authDomain: "tcc-arduino-c2ee7.firebaseapp.com",
+      databaseURL: "https://tcc-arduino-c2ee7.firebaseio.com",
+      projectId: "tcc-arduino-c2ee7",
+      storageBucket: "tcc-arduino-c2ee7.appspot.com",
+      messagingSenderId: "49271928523"
+    }),
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    TabsPage,
+    HomePage,
+    CadastroPage,
+    LoginPage
+    
   ],
   providers: [
     StatusBar,
