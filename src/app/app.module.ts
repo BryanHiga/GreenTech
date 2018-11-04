@@ -4,45 +4,42 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
-import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { CadastroPage } from '../pages/cadastro/cadastro';
-import { LoginPage } from '../pages/login/login';
-
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { FIREBASE_CONFIG } from './firebase.credentials';
+
+import { MyApp } from './app.component';
+import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+import { InformationPage } from '../pages/information/information';
+import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+
+
 
 @NgModule({
   declarations: [
     MyApp,
     TabsPage,
-    HomePage,
-    CadastroPage,
-    LoginPage
-    
+    InformationPage,
+    RegisterPage,
+    LoginPage,
+    ResetPasswordPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireModule.initializeApp({
-      apiKey: "AIzaSyDPKPQUtuEMaGDF3Na-FvUF7jq9z2PiW1s",
-      authDomain: "tcc-arduino-c2ee7.firebaseapp.com",
-      databaseURL: "https://tcc-arduino-c2ee7.firebaseio.com",
-      projectId: "tcc-arduino-c2ee7",
-      storageBucket: "tcc-arduino-c2ee7.appspot.com",
-      messagingSenderId: "49271928523"
-    }),
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     TabsPage,
-    HomePage,
-    CadastroPage,
-    LoginPage
-    
+    InformationPage,
+    RegisterPage,
+    LoginPage,
+    ResetPasswordPage
   ],
   providers: [
     StatusBar,

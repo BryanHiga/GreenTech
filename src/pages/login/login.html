@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>
+        <ion-title text-center>
             GreenTech - Login
         </ion-title>
     </ion-navbar>
@@ -10,27 +10,36 @@
     <h1 col-8>Bem-Vind@ ao
         <br> GreenTech
     </h1>
-    <form class="form">
+    <form [formGroup]="loginForm" (ngSubmit)="dataValidade()" novalidate>
 
         <ion-list>
 
             <ion-item>
                 <ion-label floating>Email</ion-label>
-                <ion-input type="email" #email></ion-input>
+                <ion-input type="email" formControlName="email" clearInput clearOnEdit="false" #email></ion-input>
+                <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>Senha</ion-label>
-                <ion-input type="password" #senha></ion-input>
+                <ion-input type="password" formControlName="password" clearInput clearOnEdit="false" #password></ion-input>
+                <span *ngIf="errorPassword" class="error"> {{ messagePassword }} </span>
             </ion-item>
 
         </ion-list>
 
-        <button type="submit" ion-button block (click)="logarUsuario()">
+        <button type="submit" ion-button block [disabled]="!loginForm.valid">
             Entrar
         </button>
+        <p><a (click)="resetPassword()">Esqueci minha senha</a></p>
+        <p>Não tem conta? <a (click)="registerUser()"> Cadastre-se agora</a></p>
 
     </form>
 
 </ion-content>
-<ion-footer text-center>Fatec de Praia Grande &copy; 2018 - Equipe GreenTech</ion-footer>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-title text-center>GreenTech&copy;2018</ion-title>
+    </ion-toolbar>
+</ion-footer>
