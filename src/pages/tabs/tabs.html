@@ -1,7 +1,6 @@
 <ion-tabs>
-    <ion-tab [root]="home" tabTitle="Home" tabIcon="home"></ion-tab>
-    <ion-tab [root]="higrometro" tabTitle="Higrômetro" tabIcon="rainy"></ion-tab>
-    <ion-tab [root]="chuva" tabTitle="Chuva" tabIcon="rainy"></ion-tab>
     <ion-tab [root]="information" tabTitle="Informações" tabIcon="information-circle"></ion-tab>
+    <ion-tab [root]="chart" tabTitle="Gráfico" tabIcon="rainy"></ion-tab> 
+    <ion-tab [root]="table" tabTitle="Tabela" tabIcon="rainy"></ion-tab>
     <ion-tab  tabTitle="Sair" tabIcon="log-out" (ionSelect)="logout()"></ion-tab>
 </ion-tabs>

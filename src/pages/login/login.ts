@@ -20,14 +20,14 @@ export class LoginPage {
     @ViewChild('password') password;
 
     public loginForm: any;
-    messageEmail:string = "";
-    messagePassword:string = "";
-    errorEmail:boolean = false;
-    errorPassword:boolean = false;
+    messageEmail: string = "";
+    messagePassword: string = "";
+    errorEmail: boolean = false;
+    errorPassword: boolean = false;
 
     constructor(
-        public formBuilder: FormBuilder,
         public navCtrl: NavController,
+        public formBuilder: FormBuilder,
         public toastCtrl: ToastController,
         public firebaseAuth: AngularFireAuth
     ) {
@@ -35,12 +35,13 @@ export class LoginPage {
         firebase.auth().getRedirectResult()
             .then(() => {
                 if (this.firebaseAuth.auth.currentUser.uid) {
-                    this.navCtrl.setRoot(TabsPage);
+                    //this.navCtrl.setRoot(TabsPage);
+                    console.log("vai para o tabs");
                 }
             }).catch((error: any) => {
                 console.log(error);
             });
-        
+
         this.loginForm = formBuilder.group({
             email: [
                 '',
@@ -55,15 +56,13 @@ export class LoginPage {
                 ])
             ]
         });
-        
+
     }
 
-
-
-
-
-
-
+    ionViewDidLoad(){
+        console.log("TabsPage");
+    }
+    
     public dataValidade(): void {
         let { email, password } = this.loginForm.controls;
         if (!this.loginForm.valid) {
@@ -84,26 +83,10 @@ export class LoginPage {
             }
         }
         else {
-            this.autenticarUsuario();
+            this.loginUser();
         }
     }
 
-    /**
-     * autenticarUsuario
-     */
-    public autenticarUsuario() {
-        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-            .then(() => {
-                // console.log(this.firebaseAuth.auth.currentUser.uid );
-                return this.loginUser();
-            }).catch((erro: any) => {
-                this.showMessage('Ocorreu um erro ao auntenticar');
-            })
-    }
-
-    /**
-     * logarUsuario
-     */
     public loginUser() {
         this.firebaseAuth.auth.signInWithEmailAndPassword(this.email.value, this.password.value)
             .then(() => {
@@ -145,7 +128,7 @@ export class LoginPage {
         this.navCtrl.setRoot(RegisterPage);
     }
 
-    public resetPassword(){
+    public resetPassword() {
         this.navCtrl.push(ResetPasswordPage);
     }
 }

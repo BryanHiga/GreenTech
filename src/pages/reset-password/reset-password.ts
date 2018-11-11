@@ -1,15 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, ToastController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { LoginPage } from '../login/login';
 
-/**
- * Generated class for the ResetPasswordPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { AngularFireAuth } from 'angularfire2/auth';
+
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-reset-password',
@@ -35,10 +30,6 @@ export class ResetPasswordPage {
         Validators.required
       ]
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ResetPasswordPage');
   }
 
   public dataValidade(): void {

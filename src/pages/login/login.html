@@ -16,7 +16,7 @@
 
             <ion-item>
                 <ion-label floating>Email</ion-label>
-                <ion-input type="email" formControlName="email" clearInput clearOnEdit="false" #email></ion-input>
+                <ion-input type="email" formControlName="email" clearInput nofocus clearOnEdit="false" #email></ion-input>
                 <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>
             </ion-item>
 

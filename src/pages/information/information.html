@@ -1,15 +1,42 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title text-center>
-      GreenTech - Home
+  <ion-navbar color="primary">
+    <!-- <img src="../../assets/imgs/logoProjeto.png" alt="logo GreenTech"> -->
+    <ion-title>
+      Informações
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-<h1>Bem-Vind@ ao <br>
-  GreenTech</h1>
-  <p>
-    
-  </p>
+  <ion-card>
+    <ion-card-header>
+      Dados Atuais
+    </ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col center text-center>
+          <ion-card>
+            {{ umidade }}
+            <p>Umidade</p>
+          </ion-card>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-card>
+            {{ chuva }}
+            <p>Chuva</p>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+      <ion-card-header>
+        Sobre o GreenTech
+      </ion-card-header>
+      <ion-card-content>
+          texto
+      </ion-card-content>
+    </ion-card>
+  
 </ion-content>

@@ -6,15 +6,17 @@ import firebase from "firebase";
 
 import { LoginPage } from "../login/login";
 import { InformationPage } from "../information/information";
+import { ChartPage } from "../chart/chart";
+import { TablePage } from "../table/table";
 
 @Component({
     templateUrl: 'tabs.html'
 })
 export class TabsPage {
-    home = InformationPage;
-    higrometro = InformationPage;
-    chuva = InformationPage;
     information = InformationPage;
+    chart = ChartPage;
+    table = TablePage;
+    
 
     constructor(
         public navCtrl: NavController,
@@ -22,7 +24,9 @@ export class TabsPage {
         public firebaseAuth: AngularFireAuth
 
     ) {}
-    
+    ionViewDidLoad(){
+        console.log("TabsPage");
+    }
     public logout(): void {
         this.firebaseAuth.auth.onAuthStateChanged((user) => {
             

@@ -7,6 +7,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { FIREBASE_CONFIG } from './firebase.credentials';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+import { SensoresProvider } from '../providers/sensores/sensores';
 
 import { MyApp } from './app.component';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -14,6 +17,9 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { InformationPage } from '../pages/information/information';
 import { ResetPasswordPage } from '../pages/reset-password/reset-password';
+import { ChartPage } from '../pages/chart/chart';
+import { TablePage } from '../pages/table/table';
+
 
 
 
@@ -24,13 +30,16 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     InformationPage,
     RegisterPage,
     LoginPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    ChartPage,
+    TablePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,12 +48,15 @@ import { ResetPasswordPage } from '../pages/reset-password/reset-password';
     InformationPage,
     RegisterPage,
     LoginPage,
-    ResetPasswordPage
+    ResetPasswordPage,
+    ChartPage,
+    TablePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    SensoresProvider
   ]
 })
 export class AppModule {}

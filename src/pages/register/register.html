@@ -8,28 +8,38 @@
 
 <ion-content padding>
 
-    <form class="form">
+    <form [formGroup]="registerForm" (ngSubmit)="dataValidade()" novalidate>
+
+        <h1 col-8>Junte-se ao
+            <br> GreenTech
+        </h1>
         <ion-list>
+
             <ion-item>
                 <ion-label floating>Nome Completo</ion-label>
-                <ion-input type="text" #name></ion-input>
+                <ion-input type="text" formControlName="name" clearInput nofocus clearOnEdit="false" #name></ion-input>
+                <span *ngIf="errorName" class="error"> {{ messageName }} </span>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>Email</ion-label>
-                <ion-input type="email" #email></ion-input>
+                <ion-input type="email" formControlName="email" clearInput nofocus clearOnEdit="false" #email></ion-input>
+                <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>
             </ion-item>
 
             <ion-item>
                 <ion-label floating>Senha</ion-label>
-                <ion-input type="password" #password></ion-input>
+                <ion-input type="password" formControlName="password" clearInput clearOnEdit="false" #password></ion-input>
+                <span *ngIf="errorPassword" class="error"> {{ messagePassword }} </span>
             </ion-item>
         </ion-list>
 
-        <button type="submit" ion-button block (click)="registerUser()">
+        <button type="submit" ion-button block [disabled]="!registerForm.valid">
             Adicionar Usuário
         </button>
+
         <p>Já possui conta? <a (click)="loginUser()"> Fazer login</a></p>
+
     </form>
 
 </ion-content>

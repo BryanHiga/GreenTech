@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { Observable } from 'rxjs/Observable';
+import { SensoresProvider } from '../../providers/sensores/sensores';
 
 @Component({
   selector: 'page-information',
@@ -8,8 +8,21 @@ import { AngularFireAuth } from 'angularfire2/auth';
 })
 export class InformationPage {
 
-  constructor(public navCtrl: NavController,public firebaseAuth: AngularFireAuth) {
-    
+  sensor: Observable<any>;
+  umidade: number = 0;
+  chuva: number = 0;
+
+  constructor(
+    private provider: SensoresProvider
+  ) {
+    this.sensor = this.provider.getLast();
+    this.getLast();
   }
 
+  getLast() {
+    this.sensor.subscribe(res => {
+      this.umidade = res[0].umidade;
+      this.chuva = res[0].chuva;
+    })
+  }
 }
