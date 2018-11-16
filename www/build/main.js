@@ -38,12 +38,194 @@ webpackEmptyAsyncContext.id = 204;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__ = __webpack_require__(84);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var InformationPage = /** @class */ (function () {
+    function InformationPage(provider) {
+        this.provider = provider;
+        this.umidade = 0;
+        this.chuva = 0;
+        this.sensor = this.provider.getLast();
+        this.getLast();
+    }
+    InformationPage.prototype.getLast = function () {
+        var _this = this;
+        this.sensor.subscribe(function (res) {
+            _this.umidade = res[0].umidade;
+            _this.chuva = res[0].chuva;
+        });
+    };
+    InformationPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-information',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\information\information.html"*/'<ion-header>\n\n  <ion-navbar>\n\n    <ion-title>\n\n      GreenTech\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-fab top left edge>\n\n    <button ion-fab>\n\n      <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">\n\n    </button>\n\n  </ion-fab>\n\n  <ion-card>\n\n    <ion-card-header text-center>\n\n      Últimos dados Registrados \n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-row>\n\n        <ion-col text-center>\n\n          <ion-card>\n\n            {{ umidade }}\n\n            <br>\n\n            <small>Umidade</small>\n\n          </ion-card>\n\n        </ion-col>\n\n        <ion-col text-center>\n\n          <ion-card>\n\n            {{ chuva }}\n\n            <br>\n\n            <small>Chuva</small>\n\n          </ion-card>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n    <ion-card-header text-center>\n\n      GreenTech <br>\n\n      <small> Um jeito tecnológico de manejar sua horta</small>\n\n    </ion-card-header>\n\n    <ion-card-content text-justify>\n\n      <p>Agora as informações sobre sua horta residencial ou mesmo comunitária,\n\n        podem ser controladas online.</p>\n\n      <p>O GreenTech capitura por meio de sensores inseridos na terra, a\n\n        umidade do solo e o volume de chuva das últimas dez horas.</p>\n\n      <p>Veja o gráfico na tela do seu celular e torne a experiência de mine\n\n        agricultor divertida, alinhada com a sua rotina alimentar.\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n</ion-content>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\information\information.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__["a" /* SensoresProvider */]])
+    ], InformationPage);
+    return InformationPage;
+}());
+
+//# sourceMappingURL=information.js.map
+
+/***/ }),
+
+/***/ 309:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChartPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__ = __webpack_require__(84);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var ChartPage = /** @class */ (function () {
+    function ChartPage(provider) {
+        this.provider = provider;
+        this.sensores = this.provider.getAll();
+        this.showChart();
+    }
+    ChartPage.prototype.showChart = function () {
+        var data = new google.visualization.DataTable();
+        data.addColumn('timeofday', 'Hora do Dia');
+        data.addColumn('number', 'Umidade');
+        data.addColumn('number', 'Chuva');
+        this.sensores.forEach(function (s1) {
+            var rows = [];
+            var i = 0;
+            s1.forEach(function (sensor) {
+                console.log(sensor);
+                var row = [{ v: [8 + i, 0, 0], f: (8 + i) + '' }, sensor.umidade, sensor.chuva];
+                rows.push(row);
+                i++;
+            });
+            console.log(rows);
+            data.addRows(rows);
+            var options = {
+                chart: {
+                    title: 'Umidade do Solo e Quantidade de Chuva',
+                    subTitle: 'Médias das Últimas Horas'
+                },
+                axes: {
+                    x: {
+                        0: { side: 'top' }
+                    }
+                },
+                hAxis: {
+                    title: 'Hora do Dia',
+                    format: 'h:mm a',
+                    viewWindow: {
+                        min: [7, 0, 0],
+                        max: [19, 0, 0]
+                    }
+                },
+                vAxis: {
+                    title: '%, mm3',
+                }
+            };
+            var materialChart = new google.visualization.AreaChart(document.getElementById('chart'));
+            materialChart.draw(data, options);
+        });
+    };
+    ChartPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-chart',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\chart\chart.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>GreenTech</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-fab top left edge>\n    <button ion-fab>\n      <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">\n    </button>\n  </ion-fab>\n  <ion-card>\n    <ion-card-header text-center>\n      Umidade do Solo<br> e <br>Quantidade de Chuva\n      <br>\n      <small>Médias das Últimas Horas</small>\n    </ion-card-header>\n    <ion-card-content id="chart">\n    </ion-card-content>\n  </ion-card>\n</ion-content>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\chart\chart.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__["a" /* SensoresProvider */]])
+    ], ChartPage);
+    return ChartPage;
+}());
+
+//# sourceMappingURL=chart.js.map
+
+/***/ }),
+
+/***/ 310:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TablePage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__ = __webpack_require__(84);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+var TablePage = /** @class */ (function () {
+    function TablePage(provider) {
+        this.provider = provider;
+        this.sensores = this.provider.getAll();
+        this.drawTable();
+    }
+    TablePage.prototype.drawTable = function () {
+        var data = new google.visualization.DataTable();
+        data.addColumn('timeofday', 'Hora do Dia');
+        data.addColumn('number', 'Umidade (%)');
+        data.addColumn('number', 'Chuva  (mm3)');
+        this.sensores.forEach(function (s1) {
+            var rows = [];
+            var i = 0;
+            s1.forEach(function (sensor) {
+                console.log(sensor);
+                var row = [{ v: [8 + i, 0, 0], f: (8 + i) + '' }, sensor.umidade, sensor.chuva];
+                rows.push(row);
+                i++;
+            });
+            console.log(rows);
+            data.addRows(rows);
+            var table = new google.visualization.Table(document.getElementById('table'));
+            table.draw(data, { showRowNumber: false, width: '100%', height: '100%' });
+        });
+    };
+    TablePage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-table',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\table\table.html"*/'<ion-header>\n  <ion-navbar>\n    <ion-title>\n      GreenTech\n    </ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-fab top left edge>\n    <button ion-fab>\n      <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">\n    </button>\n  </ion-fab>\n  <ion-card>\n    <ion-card-header text-center>\n      Umidade do Solo<br> e <br>Quantidade de Chuva\n      <br>\n      <small>Médias das Últimas Horas</small>\n    </ion-card-header>\n    <ion-card-content id="table">\n    </ion-card-content>\n  </ion-card>\n</ion-content>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\table\table.html"*/
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__["a" /* SensoresProvider */]])
+    ], TablePage);
+    return TablePage;
+}());
+
+//# sourceMappingURL=table.js.map
+
+/***/ }),
+
+/***/ 311:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return RegisterPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__tabs_tabs__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(63);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_forms__ = __webpack_require__(17);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -160,7 +342,7 @@ var RegisterPage = /** @class */ (function () {
     ], RegisterPage.prototype, "password", void 0);
     RegisterPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-register',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\register\register.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title text-center>\n\n            GreenTech - Cadastro-se\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n\n\n    <form [formGroup]="registerForm" (ngSubmit)="dataValidade()" novalidate>\n\n\n\n        <h1 col-8>Junte-se ao\n\n            <br> GreenTech\n\n        </h1>\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Nome Completo</ion-label>\n\n                <ion-input type="text" formControlName="name" clearInput nofocus clearOnEdit="false" #name></ion-input>\n\n                <span *ngIf="errorName" class="error"> {{ messageName }} </span>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Email</ion-label>\n\n                <ion-input type="email" formControlName="email" clearInput nofocus clearOnEdit="false" #email></ion-input>\n\n                <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Senha</ion-label>\n\n                <ion-input type="password" formControlName="password" clearInput clearOnEdit="false" #password></ion-input>\n\n                <span *ngIf="errorPassword" class="error"> {{ messagePassword }} </span>\n\n            </ion-item>\n\n        </ion-list>\n\n\n\n        <button type="submit" ion-button block [disabled]="!registerForm.valid">\n\n            Adicionar Usuário\n\n        </button>\n\n\n\n        <p>Já possui conta? <a (click)="loginUser()"> Fazer login</a></p>\n\n\n\n    </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <ion-toolbar>\n\n        <ion-title text-center>GreenTech&copy;2018</ion-title>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\register\register.html"*/
+            selector: 'page-register',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\register\register.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>\n\n            GreenTech\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-fab top left edge>\n\n        <button ion-fab>\n\n            <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">\n\n        </button>\n\n    </ion-fab>\n\n\n\n    <form [formGroup]="registerForm" (ngSubmit)="dataValidade()" novalidate>\n\n\n\n        <h1 text-center>Junte-se ao GreenTech </h1>\n\n        <h2 text-center>Cadastre-se!</h2>\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Nome Completo</ion-label>\n\n                <ion-input type="text" formControlName="name" clearInput nofocus clearOnEdit="false" #name></ion-input>\n\n                <span *ngIf="errorName" class="error"> {{ messageName }} </span>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Email</ion-label>\n\n                <ion-input type="email" formControlName="email" clearInput nofocus clearOnEdit="false" #email></ion-input>\n\n                <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Senha</ion-label>\n\n                <ion-input type="password" formControlName="password" clearInput clearOnEdit="false" #password></ion-input>\n\n                <span *ngIf="errorPassword" class="error"> {{ messagePassword }} </span>\n\n            </ion-item>\n\n        </ion-list>\n\n\n\n        <button type="submit" ion-button block [disabled]="!registerForm.valid">\n\n            Adicionar Usuário\n\n        </button>\n\n\n\n        <p>Já possui conta? <a (click)="loginUser()"> Fazer login</a></p>\n\n\n\n    </form>\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <ion-toolbar>\n\n        <ion-title text-center>GreenTech&copy;2018</ion-title>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\register\register.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_5__angular_forms__["a" /* FormBuilder */],
@@ -174,7 +356,7 @@ var RegisterPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 309:
+/***/ 312:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -183,7 +365,7 @@ var RegisterPage = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(47);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(63);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -253,7 +435,7 @@ var ResetPasswordPage = /** @class */ (function () {
     ], ResetPasswordPage.prototype, "email", void 0);
     ResetPasswordPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-reset-password',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\reset-password\reset-password.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title text-center>GreenTech - Redefinir senha</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <p>Informe o email cadastrado para receber as instruções para recuperação de acesso.</p>\n  <form [formGroup]="resetPwdForm" (ngSubmit)="dataValidade()" novalidate>\n\n    <ion-list>\n\n      <ion-item>\n        <ion-label floating>Seu Email</ion-label>\n        <ion-input type="email" formControlName="email" clearInput clearOnEdit="false" #email></ion-input>\n        <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>\n      </ion-item>\n\n    </ion-list>\n\n    <button type="submit" ion-button block [disabled]="!resetPwdForm.valid">\n      Redefinir Senha\n    </button>\n\n  </form>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-title text-center>GreenTech&copy;2018</ion-title>\n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\reset-password\reset-password.html"*/,
+            selector: 'page-reset-password',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\reset-password\reset-password.html"*/'<ion-header>\n    <ion-navbar>\n      <ion-title>\n        GreenTech\n      </ion-title>\n    </ion-navbar>\n  </ion-header>\n\n<ion-content padding>\n  <ion-fab top left edge>\n    <button ion-fab>\n      <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">\n    </button>\n  </ion-fab>\n  <h1>Redefinir senha</h1>\n  <p>Informe o email cadastrado para receber as instruções para recuperação de acesso.</p>\n\n  <form [formGroup]="resetPwdForm" (ngSubmit)="dataValidade()" novalidate>\n    <ion-list>\n      <ion-item>\n        <ion-label floating>Seu Email</ion-label>\n        <ion-input type="email" formControlName="email" clearInput clearOnEdit="false" #email></ion-input>\n        <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>\n      </ion-item>\n    </ion-list>\n    <button type="submit" ion-button block [disabled]="!resetPwdForm.valid">\n      Redefinir Senha\n    </button>\n  </form>\n</ion-content>\n\n<ion-footer>\n  <ion-toolbar>\n    <ion-title text-center>GreenTech&copy;2018</ion-title>\n  </ion-toolbar>\n</ion-footer>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\reset-password\reset-password.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* ToastController */],
@@ -264,188 +446,6 @@ var ResetPasswordPage = /** @class */ (function () {
 }());
 
 //# sourceMappingURL=reset-password.js.map
-
-/***/ }),
-
-/***/ 310:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InformationPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__ = __webpack_require__(84);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var InformationPage = /** @class */ (function () {
-    function InformationPage(provider) {
-        this.provider = provider;
-        this.umidade = 0;
-        this.chuva = 0;
-        this.sensor = this.provider.getLast();
-        this.getLast();
-    }
-    InformationPage.prototype.getLast = function () {
-        var _this = this;
-        this.sensor.subscribe(function (res) {
-            _this.umidade = res[0].umidade;
-            _this.chuva = res[0].chuva;
-        });
-    };
-    InformationPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-information',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\information\information.html"*/'<ion-header>\n\n  <ion-navbar color="primary">\n\n    <!-- <img src="../../assets/imgs/logoProjeto.png" alt="logo GreenTech"> -->\n\n    <ion-title>\n\n      Informações\n\n    </ion-title>\n\n  </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n  <ion-card>\n\n    <ion-card-header>\n\n      Dados Atuais\n\n    </ion-card-header>\n\n    <ion-card-content>\n\n      <ion-row>\n\n        <ion-col center text-center>\n\n          <ion-card>\n\n            {{ umidade }}\n\n            <p>Umidade</p>\n\n          </ion-card>\n\n        </ion-col>\n\n        <ion-col center text-center>\n\n          <ion-card>\n\n            {{ chuva }}\n\n            <p>Chuva</p>\n\n          </ion-card>\n\n        </ion-col>\n\n      </ion-row>\n\n    </ion-card-content>\n\n  </ion-card>\n\n\n\n  <ion-card>\n\n      <ion-card-header>\n\n        Sobre o GreenTech\n\n      </ion-card-header>\n\n      <ion-card-content>\n\n          texto\n\n      </ion-card-content>\n\n    </ion-card>\n\n  \n\n</ion-content>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\information\information.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__["a" /* SensoresProvider */]])
-    ], InformationPage);
-    return InformationPage;
-}());
-
-//# sourceMappingURL=information.js.map
-
-/***/ }),
-
-/***/ 311:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ChartPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__ = __webpack_require__(84);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var ChartPage = /** @class */ (function () {
-    function ChartPage(provider) {
-        this.provider = provider;
-        this.sensores = this.provider.getAll();
-        this.showChart();
-    }
-    ChartPage.prototype.showChart = function () {
-        var data = new google.visualization.DataTable();
-        data.addColumn('timeofday', 'Hora do Dia');
-        data.addColumn('number', 'Umidade');
-        data.addColumn('number', 'Chuva');
-        this.sensores.forEach(function (s1) {
-            var rows = [];
-            var i = 0;
-            s1.forEach(function (sensor) {
-                console.log(sensor);
-                var row = [{ v: [8 + i, 0, 0], f: (8 + i) + '' }, sensor.umidade, sensor.chuva];
-                rows.push(row);
-                i++;
-            });
-            console.log(rows);
-            data.addRows(rows);
-            var options = {
-                chart: {
-                    title: 'Umidade do Solo e Quantidade de Chuva',
-                    subTitle: 'Médias das Últimas Horas'
-                },
-                axes: {
-                    x: {
-                        0: { side: 'top' }
-                    }
-                },
-                hAxis: {
-                    title: 'Hora do Dia',
-                    format: 'h:mm a',
-                    viewWindow: {
-                        min: [7, 0, 0],
-                        max: [19, 0, 0]
-                    }
-                },
-                vAxis: {
-                    title: '%, mm3',
-                }
-            };
-            var materialChart = new google.visualization.AreaChart(document.getElementById('chart'));
-            materialChart.draw(data, options);
-        });
-    };
-    ChartPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-chart',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\chart\chart.html"*/'<!--\n  Generated template for the ChartsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>charts</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-header>\n        <p>Umidade do Solo<br> e <br>Quantidade de Chuva</p>\n    </ion-card-header>\n    <ion-card-content id="chart">\n    </ion-card-content>\n  </ion-card>\n</ion-content>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\chart\chart.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__["a" /* SensoresProvider */]])
-    ], ChartPage);
-    return ChartPage;
-}());
-
-//# sourceMappingURL=chart.js.map
-
-/***/ }),
-
-/***/ 312:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TablePage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__ = __webpack_require__(84);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-var TablePage = /** @class */ (function () {
-    function TablePage(provider) {
-        this.provider = provider;
-        this.sensores = this.provider.getAll();
-        this.drawTable();
-    }
-    TablePage.prototype.drawTable = function () {
-        var data = new google.visualization.DataTable();
-        data.addColumn('timeofday', 'Hora do Dia');
-        data.addColumn('number', 'Umidade');
-        data.addColumn('number', 'Chuva');
-        this.sensores.forEach(function (s1) {
-            var rows = [];
-            var i = 0;
-            s1.forEach(function (sensor) {
-                console.log(sensor);
-                var row = [{ v: [8 + i, 0, 0], f: (8 + i) + '' }, sensor.umidade, sensor.chuva];
-                rows.push(row);
-                i++;
-            });
-            console.log(rows);
-            data.addRows(rows);
-            var table = new google.visualization.Table(document.getElementById('table'));
-            table.draw(data, { showRowNumber: false, width: '100%', height: '100%' });
-        });
-    };
-    TablePage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-table',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\table\table.html"*/'<ion-header>\n\n  <ion-navbar>\n    <ion-title>table</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-card>\n    <ion-card-header text-center>\n      <p>Umidade do Solo<br> e <br>Quantidade de Chuva</p>\n    </ion-card-header>\n    <ion-card-content id="table">\n    </ion-card-content>\n  </ion-card>\n</ion-content>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\table\table.html"*/
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_sensores_sensores__["a" /* SensoresProvider */]])
-    ], TablePage);
-    return TablePage;
-}());
-
-//# sourceMappingURL=table.js.map
 
 /***/ }),
 
@@ -479,13 +479,13 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_angularfire2_database__ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__providers_sensores_sensores__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__app_component__ = __webpack_require__(474);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_tabs_tabs__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_register_register__ = __webpack_require__(308);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_information_information__ = __webpack_require__(310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_reset_password_reset_password__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_chart_chart__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_table_table__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_tabs_tabs__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_login_login__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_register_register__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_information_information__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_reset_password_reset_password__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_chart_chart__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_table_table__ = __webpack_require__(310);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -566,12 +566,6 @@ var AppModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FIREBASE_CONFIG; });
 var FIREBASE_CONFIG = {
-    // apiKey: "AIzaSyDPKPQUtuEMaGDF3Na-FvUF7jq9z2PiW1s",
-    // authDomain: "tcc-arduino-c2ee7.firebaseapp.com",
-    // databaseURL: "https://tcc-arduino-c2ee7.firebaseio.com",
-    // projectId: "tcc-arduino-c2ee7",
-    // storageBucket: "tcc-arduino-c2ee7.appspot.com",
-    // messagingSenderId: "49271928523"
     apiKey: "AIzaSyDcppxef20gMCd-AyWl50SbUCEGMeLq7Ek",
     authDomain: "greentech-ef28f.firebaseapp.com",
     databaseURL: "https://greentech-ef28f.firebaseio.com",
@@ -592,9 +586,9 @@ var FIREBASE_CONFIG = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_login_login__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__ = __webpack_require__(88);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -613,46 +607,42 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var MyApp = /** @class */ (function () {
     function MyApp(platform, statusBar, splashScreen, angularFireAuth) {
+        var _this = this;
         this.angularFireAuth = angularFireAuth;
-        this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */];
         platform.ready().then(function () {
             // Okay, so the platform is ready and our plugins are available.
             // Here you can do any higher level native things you might need.
             statusBar.styleDefault();
             splashScreen.hide();
+            _this.angularFireAuth.auth.onAuthStateChanged(function (user) {
+                if (user) {
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_6__pages_tabs_tabs__["a" /* TabsPage */];
+                }
+                else {
+                    _this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */];
+                }
+            });
         });
     }
-    MyApp.prototype.ngOnInit = function () {
-        this.angularFireAuth.auth.onAuthStateChanged(function (user) {
-            if (user) {
-                console.log("tabs");
-                console.log(user.displayName);
-                this.rootPage = __WEBPACK_IMPORTED_MODULE_4__pages_tabs_tabs__["a" /* TabsPage */];
-            }
-            else {
-                console.log("login");
-                this.rootPage = __WEBPACK_IMPORTED_MODULE_5__pages_login_login__["a" /* LoginPage */];
-            }
-        });
-    };
     __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('rootNav'),
-        __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */]) === "function" && _a || Object)
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_8" /* ViewChild */])('myNav'),
+        __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\TCC\Greentech\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"D:\TCC\Greentech\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            template: '<ion-nav #myNav [root]="rootPage"></ion-nav>'
         }),
-        __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6_angularfire2_auth__["a" /* AngularFireAuth */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__["a" /* AngularFireAuth */]])
     ], MyApp);
     return MyApp;
-    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
 
-/***/ 65:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -663,9 +653,9 @@ var MyApp = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2_auth__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tabs_tabs__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__register_register__ = __webpack_require__(308);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reset_password_reset_password__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__tabs_tabs__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__register_register__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__reset_password_reset_password__ = __webpack_require__(312);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -685,7 +675,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 var LoginPage = /** @class */ (function () {
     function LoginPage(navCtrl, formBuilder, toastCtrl, firebaseAuth) {
-        var _this = this;
         this.navCtrl = navCtrl;
         this.formBuilder = formBuilder;
         this.toastCtrl = toastCtrl;
@@ -694,16 +683,17 @@ var LoginPage = /** @class */ (function () {
         this.messagePassword = "";
         this.errorEmail = false;
         this.errorPassword = false;
-        console.log(__WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth());
-        __WEBPACK_IMPORTED_MODULE_4_firebase___default.a.auth().getRedirectResult()
-            .then(function () {
-            if (_this.firebaseAuth.auth.currentUser.uid) {
-                //this.navCtrl.setRoot(TabsPage);
-                console.log("vai para o tabs");
-            }
-        }).catch(function (error) {
-            console.log(error);
-        });
+        /*console.log(firebase.auth());
+        firebase.auth().getRedirectResult()
+            .then(() => {
+                if (this.firebaseAuth.auth.currentUser.uid) {
+                    //this.navCtrl.setRoot(TabsPage);
+                    console.log("vai para o tabs");
+                }
+            }).catch((error: any) => {
+                console.log(error);
+            });
+*/
         this.loginForm = formBuilder.group({
             email: [
                 '',
@@ -721,7 +711,7 @@ var LoginPage = /** @class */ (function () {
     }
     LoginPage_1 = LoginPage;
     LoginPage.prototype.ionViewDidLoad = function () {
-        console.log("TabsPage");
+        console.log(" 3LoginPage");
     };
     LoginPage.prototype.dataValidade = function () {
         var _a = this.loginForm.controls, email = _a.email, password = _a.password;
@@ -795,7 +785,7 @@ var LoginPage = /** @class */ (function () {
     ], LoginPage.prototype, "password", void 0);
     LoginPage = LoginPage_1 = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\login\login.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title text-center>\n\n            GreenTech - Login\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <h1 col-8>Bem-Vind@ ao\n\n        <br> GreenTech\n\n    </h1>\n\n    <form [formGroup]="loginForm" (ngSubmit)="dataValidade()" novalidate>\n\n\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Email</ion-label>\n\n                <ion-input type="email" formControlName="email" clearInput nofocus clearOnEdit="false" #email></ion-input>\n\n                <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Senha</ion-label>\n\n                <ion-input type="password" formControlName="password" clearInput clearOnEdit="false" #password></ion-input>\n\n                <span *ngIf="errorPassword" class="error"> {{ messagePassword }} </span>\n\n            </ion-item>\n\n\n\n        </ion-list>\n\n\n\n        <button type="submit" ion-button block [disabled]="!loginForm.valid">\n\n            Entrar\n\n        </button>\n\n        <p><a (click)="resetPassword()">Esqueci minha senha</a></p>\n\n        <p>Não tem conta? <a (click)="registerUser()"> Cadastre-se agora</a></p>\n\n\n\n    </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <ion-toolbar>\n\n        <ion-title text-center>GreenTech&copy;2018</ion-title>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\login\login.html"*/
+            selector: 'page-login',template:/*ion-inline-start:"D:\TCC\Greentech\src\pages\login\login.html"*/'<ion-header>\n\n    <ion-navbar>\n\n        <ion-title>\n\n            GreenTech\n\n        </ion-title>\n\n    </ion-navbar>\n\n</ion-header>\n\n\n\n<ion-content padding>\n\n    <ion-fab top left edge>\n\n        <button ion-fab>\n\n            <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">\n\n        </button>\n\n    </ion-fab>\n\n    <h1 text-center>Bem-Vind@ ao GreenTech\n\n    </h1>\n\n    <form [formGroup]="loginForm" (ngSubmit)="dataValidade()" novalidate>\n\n\n\n        <ion-list>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Email</ion-label>\n\n                <ion-input type="email" formControlName="email" clearInput nofocus clearOnEdit="false" #email></ion-input>\n\n                <span *ngIf="errorEmail" class="error"> {{ messageEmail }} </span>\n\n            </ion-item>\n\n\n\n            <ion-item>\n\n                <ion-label floating>Senha</ion-label>\n\n                <ion-input type="password" formControlName="password" clearInput clearOnEdit="false" #password></ion-input>\n\n                <span *ngIf="errorPassword" class="error"> {{ messagePassword }} </span>\n\n            </ion-item>\n\n\n\n        </ion-list>\n\n\n\n        <button type="submit" ion-button block [disabled]="!loginForm.valid">\n\n            Entrar\n\n        </button>\n\n        <p><a (click)="resetPassword()">Esqueci minha senha</a></p>\n\n        <p>Não tem conta? <a (click)="registerUser()"> Cadastre-se agora</a></p>\n\n\n\n    </form>\n\n\n\n</ion-content>\n\n\n\n<ion-footer>\n\n    <ion-toolbar>\n\n        <ion-title text-center>GreenTech&copy;2018</ion-title>\n\n    </ion-toolbar>\n\n</ion-footer>'/*ion-inline-end:"D:\TCC\Greentech\src\pages\login\login.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__angular_forms__["a" /* FormBuilder */],
@@ -891,7 +881,7 @@ var SensoresProvider = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 85:
+/***/ 88:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -901,10 +891,10 @@ var SensoresProvider = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_angularfire2_auth__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_firebase___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_firebase__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(65);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__information_information__ = __webpack_require__(310);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__chart_chart__ = __webpack_require__(311);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__table_table__ = __webpack_require__(312);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__login_login__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__information_information__ = __webpack_require__(308);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__chart_chart__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__table_table__ = __webpack_require__(310);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);

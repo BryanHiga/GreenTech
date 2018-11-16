@@ -1,29 +1,35 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <!-- <img src="../../assets/imgs/logoProjeto.png" alt="logo GreenTech"> -->
+  <ion-navbar>
     <ion-title>
-      Informações
+      GreenTech
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-fab top left edge>
+    <button ion-fab>
+      <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">
+    </button>
+  </ion-fab>
   <ion-card>
-    <ion-card-header>
-      Dados Atuais
+    <ion-card-header text-center>
+      Últimos dados Registrados 
     </ion-card-header>
     <ion-card-content>
       <ion-row>
-        <ion-col center text-center>
+        <ion-col text-center>
           <ion-card>
             {{ umidade }}
-            <p>Umidade</p>
+            <br>
+            <small>Umidade</small>
           </ion-card>
         </ion-col>
-        <ion-col center text-center>
+        <ion-col text-center>
           <ion-card>
             {{ chuva }}
-            <p>Chuva</p>
+            <br>
+            <small>Chuva</small>
           </ion-card>
         </ion-col>
       </ion-row>
@@ -31,12 +37,18 @@
   </ion-card>
 
   <ion-card>
-      <ion-card-header>
-        Sobre o GreenTech
-      </ion-card-header>
-      <ion-card-content>
-          texto
-      </ion-card-content>
-    </ion-card>
-  
+    <ion-card-header text-center>
+      GreenTech <br>
+      <small> Um jeito tecnológico de manejar sua horta</small>
+    </ion-card-header>
+    <ion-card-content text-justify>
+      <p>Agora as informações sobre sua horta residencial ou mesmo comunitária,
+        podem ser controladas online.</p>
+      <p>O GreenTech capitura por meio de sensores inseridos na terra, a
+        umidade do solo e o volume de chuva das últimas dez horas.</p>
+      <p>Veja o gráfico na tela do seu celular e torne a experiência de mine
+        agricultor divertida, alinhada com a sua rotina alimentar.
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

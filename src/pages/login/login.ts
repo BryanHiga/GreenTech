@@ -31,7 +31,7 @@ export class LoginPage {
         public toastCtrl: ToastController,
         public firebaseAuth: AngularFireAuth
     ) {
-        console.log(firebase.auth());
+        /*console.log(firebase.auth());
         firebase.auth().getRedirectResult()
             .then(() => {
                 if (this.firebaseAuth.auth.currentUser.uid) {
@@ -41,7 +41,7 @@ export class LoginPage {
             }).catch((error: any) => {
                 console.log(error);
             });
-
+*/
         this.loginForm = formBuilder.group({
             email: [
                 '',
@@ -60,7 +60,7 @@ export class LoginPage {
     }
 
     ionViewDidLoad(){
-        console.log("TabsPage");
+        console.log(" 3LoginPage");
     }
     
     public dataValidade(): void {

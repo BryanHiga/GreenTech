@@ -1,14 +1,18 @@
 <ion-header>
     <ion-navbar>
-        <ion-title text-center>
-            GreenTech - Login
+        <ion-title>
+            GreenTech
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-    <h1 col-8>Bem-Vind@ ao
-        <br> GreenTech
+    <ion-fab top left edge>
+        <button ion-fab>
+            <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">
+        </button>
+    </ion-fab>
+    <h1 text-center>Bem-Vind@ ao GreenTech
     </h1>
     <form [formGroup]="loginForm" (ngSubmit)="dataValidade()" novalidate>
 

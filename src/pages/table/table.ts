@@ -24,8 +24,8 @@ export class TablePage {
   drawTable() {
     var data = new google.visualization.DataTable();
     data.addColumn('timeofday', 'Hora do Dia');
-    data.addColumn('number', 'Umidade');
-    data.addColumn('number', 'Chuva');
+    data.addColumn('number', 'Umidade (%)');
+    data.addColumn('number', 'Chuva  (mm3)');
 
     this.sensores.forEach(function (s1) {
       let rows = [];

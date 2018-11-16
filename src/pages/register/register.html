@@ -1,18 +1,22 @@
 <ion-header>
     <ion-navbar>
-        <ion-title text-center>
-            GreenTech - Cadastro-se
+        <ion-title>
+            GreenTech
         </ion-title>
     </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+    <ion-fab top left edge>
+        <button ion-fab>
+            <img src="../../assets/imgs/logoOficialFinal.png" alt="logo GreenTech">
+        </button>
+    </ion-fab>
 
     <form [formGroup]="registerForm" (ngSubmit)="dataValidade()" novalidate>
 
-        <h1 col-8>Junte-se ao
-            <br> GreenTech
-        </h1>
+        <h1 text-center>Junte-se ao GreenTech </h1>
+        <h2 text-center>Cadastre-se!</h2>
         <ion-list>
 
             <ion-item>
@@ -41,7 +45,6 @@
         <p>Já possui conta? <a (click)="loginUser()"> Fazer login</a></p>
 
     </form>
-
 </ion-content>
 
 <ion-footer>

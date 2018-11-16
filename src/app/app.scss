@@ -14,3 +14,53 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+
+$fa-font-path: $font-path;
+
+@import 'font-awesome.css'; 
+
+i[class^='fa-'], ion-icon[class^='fa-'] {    
+    font-family: 'FontAwesome' !important;
+ }
+
+//HEADER
+ion-title{
+    margin-left: 100px;
+}
+//CONTENT
+h1{
+    margin-top:25px !important;
+}
+
+//CARD
+ion-card-header{
+    font-weight: 500;
+    background-color: #f0f0f0;
+}
+
+ion-card-content p{
+    padding-top: 14px !important;
+}
+
+ion-card-content#chart,ion-card-content#table{
+    margin-top:15px;
+}
+
+//FAB
+.fab{
+    width: 80px;
+    height: 80px;
+    margin-top:-25px;
+    margin-left: 30px;
+    background-color: transparent;//#32db64;
+    box-shadow: none;
+}
+
+.fab img{
+    max-width: 90%;
+}
+
+//FOOTER
+ion-footer ion-title{
+    margin-left:0;
+}

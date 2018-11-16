@@ -1,51 +1,35 @@
-import { Component, ViewChild } from '@angular/core';
-import { Platform, NavController, NavParams, Nav } from 'ionic-angular';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { Platform, NavController, NavParams } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { RegisterPage } from '../pages/register/register';
-import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { rootRenderNodes } from '@angular/core/src/view';
+import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/tabs/tabs';
 
 @Component({
-  templateUrl: 'app.html'
+  template: '<ion-nav #myNav [root]="rootPage"></ion-nav>'
 })
+
 export class MyApp {
-  rootPage: any = LoginPage;
-  @ViewChild('rootNav') nav: NavController;
+  @ViewChild('myNav') nav: NavController
+  public rootPage:any;
 
-
-  constructor(
-    platform: Platform,
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
-    private angularFireAuth: AngularFireAuth
-  ) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
+    private angularFireAuth: AngularFireAuth) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-
       statusBar.styleDefault();
       splashScreen.hide();
-
-
-
-    });
-
-  }
-  ngOnInit() {
-    this.angularFireAuth.auth.onAuthStateChanged(function (user) {
-      if (user) {
-        console.log("tabs");
-        console.log(user.displayName);
-        this.rootPage = TabsPage;
-      }
-      else {
-        console.log("login");
-        this.rootPage = LoginPage;
-      }
+      this.angularFireAuth.auth.onAuthStateChanged( user => {
+        if (user) {
+          this.rootPage = TabsPage;
+        }
+        else {
+          this.rootPage = LoginPage;
+        }
+      });
     });
   }
 }
-
